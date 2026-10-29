@@ -1,0 +1,5 @@
+{% comment %}Avoid repeating the year when it is already part of the venue name.{% endcomment %}
+{% assign publication_year = entry.year | append: '' %}
+{% if publication_year != empty and entry.journal contains publication_year %}
+  {% assign entryyear = '' %}
+{% endif %}
