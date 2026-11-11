@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | escape }}</title>
+    <meta name="description" content="{{ page.description | escape }}">
+    <meta property="og:title" content="{{ page.title | escape }}">
+    <meta property="og:description" content="{{ page.description | escape }}">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ '/assets/blog/gepa-curator/curator-overview.png' | absolute_url }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <link rel="stylesheet" href="{{ '/assets/blog/gepa-curator/project.css' | relative_url }}">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="project-nav">
+      <nav aria-label="Project navigation">
+        <a class="home-link" href="{{ '/' | relative_url }}">← Zack Yu</a>
+        <div class="section-links">
+          <a href="#overview">Overview</a>
+          <a href="#gepa-curator">Method</a>
+          <a href="#results">Results</a>
+          <a href="#why-does-curation-work">Analysis</a>
+          <a href="#try-it-on-an-existing-gepa-run">Code</a>
+          <a href="#citation">Cite</a>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      <section class="project-hero" aria-labelledby="project-title">
+        <h1 id="project-title">GEPA<span>-Curator</span></h1>
+        <p class="project-subtitle">Curated Learning for Self Improving Agents</p>
+        <div class="project-authors">{{ page.project_authors | markdownify }}</div>
+        <p class="contributions">* Equal contribution &nbsp; · &nbsp; ** Equal advising</p>
+        <div class="resource-links" aria-label="Project resources">
+          <a class="primary" href="https://arxiv.org/abs/2610.37651v1">Read the paper <span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/gepa-ai/gepa/pull/560">Code &amp; integration <span aria-hidden="true">↗</span></a>
+          <a href="#overview">Watch overview <span aria-hidden="true">↓</span></a>
+        </div>
+      </section>
+      <section class="project-overview" id="overview" aria-labelledby="overview-title">
+        <p class="eyebrow">The idea in brief</p>
+        <h2 id="overview-title">
+          Better learning starts with<br>
+          better experiences.
+        </h2>
+        <p class="lead">
+          A failed rollout is not always a prompt weakness. GEPA-Curator chooses which tasks are worth learning from and retrieves past successes to
+          help the optimizer understand what went wrong.
+        </p>
+        <figure class="overview-video">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster="{{ '/assets/blog/gepa-curator/curator-overview.png' | relative_url }}"
+            aria-label="GEPA-Curator project overview"
+          >
+            <source src="{{ '/assets/blog/gepa-curator/gepa-curator.mp4' | relative_url }}" type="video/mp4">
+            <a href="{{ '/assets/blog/gepa-curator/gepa-curator.mp4' | relative_url }}">Download the overview video</a>.
+          </video>
+          <figcaption>GEPA-Curator: task curation and prior success retrieval for reflective optimization.</figcaption>
+        </figure>
+        <div class="mechanisms">
+          <div>
+            <span class="mechanism-number">01</span>
+            <h3>Choose what to learn from</h3>
+            <p>Read each task’s history to decide whether another rollout can provide useful signal.</p>
+          </div>
+          <div>
+            <span class="mechanism-number">02</span>
+            <h3>Learn from what worked</h3>
+            <p>Give the reflector a trusted success from the same task as a reference for diagnosing a failure.</p>
+          </div>
+        </div>
+      </section>
+      <article class="project-content" aria-label="Research details">{{ content }}</article>
+      <section class="citation" id="citation" aria-labelledby="citation-title">
+        <p class="eyebrow">Reference</p>
+        <h2 id="citation-title">Cite this work</h2>
+        <pre><code>{% raw %}@misc{yu2026gepacurator,
+  title         = {{GEPA-Curator}: Curated Learning for Self Improving Agents},
+  author        = {Yu, Zack and Lee, Nicholas and Lee, Minjae and
+                   Agarwal, Lakshya and Manolache, Luca and Kang, Wonjun and
+                   Zaharia, Matei and Mahoney, Michael W. and Keutzer, Kurt and
+                   Kim, Sehoon and Gholami, Amir},
+  year          = {2026},
+  eprint        = {2610.37651},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CL},
+  doi           = {10.48550/arXiv.2610.37651},
+  url           = {https://arxiv.org/abs/2610.37651}
+}{% endraw %}</code></pre>
+      </section>
+    </main>
+    <footer class="project-footer">
+      <a href="#project-title">GEPA-Curator ↑</a><a href="{{ '/' | relative_url }}">Zack Yu</a><a href="{{ '/blog/' | relative_url }}">All posts</a>
+    </footer>
+  </body>
+</html>
