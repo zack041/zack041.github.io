@@ -163,7 +163,7 @@ We ablate each component on the GitLab subset (520 train / 200 eval tasks), keep
 
 | Method                       | Success (%) |
 | ---------------------------- | ----------- |
-| Seed                         | 78.2        |
+| Seed                         | 79.2        |
 | GEPA                         | 82.8        |
 | Task curation only           | 84.2        |
 | Prior success retrieval only | 84.7        |
@@ -171,7 +171,7 @@ We ablate each component on the GitLab subset (520 train / 200 eval tasks), keep
 
 </div>
 
-Each component alone beats GEPA by under 2 points; together they add nearly 6. This fits the intuition: **task curation decides which failures the Reflector sees, and success retrieval improves how it reasons about them.**
+Each component alone improves upon GEPA by about 2 points, but together they add nearly 6 points—about 61% more than GEPA’s improvement over the seed prompt. This fits the intuition: **task curation decides which failures the Reflector sees, and success retrieval improves how it reasons about them.**
 
 ### Success/failure counts alone aren't enough
 
@@ -223,6 +223,35 @@ Its cost, including rollouts, reflection, and curation, compares as follows:
 </div>
 
 **Key result:** For a **1.31×** increase in optimization cost, GEPA-Curator gains +3.6 points over GEPA on WebArena and +18.5 points on the other agentic benchmarks. It is **4.42× cheaper than ACE** while scoring 9.2 points higher. Our actor (gpt-oss-120b) is cheap, so curation overhead is a relatively large share of the bill here; with a more expensive actor, the cost ratio to GEPA would shrink considerably.
+
+<a id="cost-matched"></a>
+
+### Matching total cost, not rollouts
+
+The comparison above matches the number of rollouts, so GEPA-Curator ends up spending more than GEPA. To check that its gains are not simply the result of a larger budget, we also run a **cost-matched** comparison, where both methods get the same total spend across actor rollouts, reflection, and curation.
+
+We stop GEPA-Curator before its cumulative cost exceeds GEPA's, and report the validated checkpoint with the highest validation score at that point. All runs use Gemini 3.1 Pro as the optimizer model, and GEPA-Curator runs with the efficiency optimization enabled. On τ-bench, GEPA-Curator validates every 12 iterations, so that a validated checkpoint exists before the run hits GEPA's budget.
+
+<div class="table-responsive" markdown="1">
+
+| Benchmark                | <span style="white-space: nowrap">GEPA score (%)</span> | <span style="white-space: nowrap">GEPA-Curator score (%)</span> | <span style="white-space: nowrap">GEPA cost (&#36;)</span> | <span style="white-space: nowrap">GEPA-Curator cost (&#36;)</span> |
+| ------------------------ | -------: | -------: | -------: | -------: |
+| WebArena: GitLab         |     82.1 | **87.3** |   144.01 | **141.23** |
+| WebArena: Shopping       |     83.8 | **86.0** |   156.10 | **155.22** |
+| WebArena: Shopping Admin | **71.5** |     70.7 |   152.05 | **150.38** |
+| WebArena: Reddit         |     77.6 | **85.8** |   141.89 | **141.01** |
+| ALFWorld                 |     82.4 | **94.3** |    55.66 | **54.96** |
+| AppWorld Test-N          |     38.0 | **65.5** |    61.78 | **60.14** |
+| AppWorld Test-C          |     27.8 | **51.8** |    61.78 | **60.14** |
+| τ-bench                  |     75.4 | **77.7** |    15.21 | **15.00** |
+
+</div>
+
+_Held-out test success rates (%) and total optimization cost under a matched budget. AppWorld cost is shared across its two test splits._
+
+At a slightly lower total cost on every benchmark, GEPA-Curator beats GEPA on seven of the eight settings. The one exception is Shopping Admin, where it trails by just 0.8 points. Averaged over all eight settings, GEPA-Curator gains **+10.1 points** over GEPA (77.4 vs. 67.3).
+
+**Key result:** The gains do not depend on spending more. Putting part of the budget into choosing more informative tasks and retrieving useful past successes is worth more than the extra cost of curation, even when GEPA gets to spend the same total.
 
 <a id="meta-harness"></a>
 
