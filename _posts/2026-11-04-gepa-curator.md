@@ -235,15 +235,15 @@ We stop GEPA-Curator before its cumulative cost exceeds GEPA's, and report the v
 <div class="table-responsive" markdown="1">
 
 | Benchmark                | <span style="white-space: nowrap">GEPA score (%)</span> | <span style="white-space: nowrap">GEPA-Curator score (%)</span> | <span style="white-space: nowrap">GEPA cost (&#36;)</span> | <span style="white-space: nowrap">GEPA-Curator cost (&#36;)</span> |
-| ------------------------ | -------: | -------: | -------: | -------: |
-| WebArena: GitLab         |     82.1 | **87.3** |   144.01 | **141.23** |
-| WebArena: Shopping       |     83.8 | **86.0** |   156.10 | **155.22** |
-| WebArena: Shopping Admin | **71.5** |     70.7 |   152.05 | **150.38** |
-| WebArena: Reddit         |     77.6 | **85.8** |   141.89 | **141.01** |
-| ALFWorld                 |     82.4 | **94.3** |    55.66 | **54.96** |
-| AppWorld Test-N          |     38.0 | **65.5** |    61.78 | **60.14** |
-| AppWorld Test-C          |     27.8 | **51.8** |    61.78 | **60.14** |
-| τ-bench                  |     75.4 | **77.7** |    15.21 | **15.00** |
+| ------------------------ | ------------------------------------------------------: | --------------------------------------------------------------: | ---------------------------------------------------------: | -----------------------------------------------------------------: |
+| WebArena: GitLab         |                                                    82.1 |                                                        **87.3** |                                                     144.01 |                                                         **141.23** |
+| WebArena: Shopping       |                                                    83.8 |                                                        **86.0** |                                                     156.10 |                                                         **155.22** |
+| WebArena: Shopping Admin |                                                **71.5** |                                                            70.7 |                                                     152.05 |                                                         **150.38** |
+| WebArena: Reddit         |                                                    77.6 |                                                        **85.8** |                                                     141.89 |                                                         **141.01** |
+| ALFWorld                 |                                                    82.4 |                                                        **94.3** |                                                      55.66 |                                                          **54.96** |
+| AppWorld Test-N          |                                                    38.0 |                                                        **65.5** |                                                      61.78 |                                                          **60.14** |
+| AppWorld Test-C          |                                                    27.8 |                                                        **51.8** |                                                      61.78 |                                                          **60.14** |
+| τ-bench                  |                                                    75.4 |                                                        **77.7** |                                                      15.21 |                                                          **15.00** |
 
 </div>
 
